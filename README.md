@@ -48,10 +48,14 @@ Python, Streamlit, FAISS, LangChain, sentence-transformers, Ollama, rank-bm25, R
 ## How to Run
 
 1. Clone the repo: `git clone https://github.com/DaniyalF007/recall.git`
-2. Create and activate virtual environment: `cd recall && python -m venv venv && source venv/bin/activate`
-3. Install dependencies: `pip install -r requirements.txt`
-4. Install and start Ollama with Llama 3: `ollama run llama3`
-5. Run the app: `streamlit run app.py`
+2. Navigate into the folder: `cd recall`
+3. Create virtual environment: `python -m venv venv`
+4. Activate virtual environment: `source venv/bin/activate`
+5. Install dependencies: `pip install -r requirements.txt`
+6. Pull the Llama 3 model (first time only): `ollama pull llama3`
+7. Start Ollama server: `ollama serve` (keep this terminal running)
+8. Open a new terminal tab, activate venv again: `source venv/bin/activate`
+9. Run the app: `streamlit run app.py`
 
 ## Author
 
