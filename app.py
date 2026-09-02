@@ -50,20 +50,24 @@ if upload_file:
         with st.spinner("Searching document..."):
 
             if retrieval_mode == "Dense":
-                results = dense_search(model, index, chunks, question_input)
+                results, latency = dense_search(
+                    model, index, chunks, question_input)
                 retrieved_chunks = [chunk for chunk, _ in results]
                 scores = [score for _, score in results]
 
             elif retrieval_mode == "BM25":
-                results = bm25_search(chunks, question_input)
+                results, latency = bm25_search(chunks, question_input)
                 retrieved_chunks = [chunk for chunk, _ in results]
                 scores = [score for _, score in results]
 
             else:
-                dense_results = dense_search(
+                dense_results, dense_latency = dense_search(
                     model, index, chunks, question_input)
-                bm25_results = bm25_search(chunks, question_input)
-                results = reciprocal_rank_fusion(dense_results, bm25_results)
+                bm25_results, bm25_latency = bm25_search(
+                    chunks, question_input)
+                results, rrf_latency = reciprocal_rank_fusion(
+                    dense_results, bm25_results)
+                latency = dense_latency + bm25_latency + rrf_latency
                 retrieved_chunks = [chunk for chunk, _ in results]
                 scores = [score for _, score in results]
 
@@ -71,6 +75,7 @@ if upload_file:
             answer = generate_answer(context, question_input)
 
         st.success("Answer generated successfully")
+        st.info(f"Retrieval latency: {latency:.4f} seconds")
         st.write("### Answer")
         st.write(answer)
 
