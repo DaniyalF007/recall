@@ -2,8 +2,18 @@ from pypdf import PdfReader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
+def is_scanned_pdf(file) -> bool:
+    """Check if PDF is scanned by checking if text extraction returns empty."""
+    reader = PdfReader(file)
+    for page in reader.pages:
+        text = page.extract_text()
+        if text and text.strip():
+            return False
+    return True
+
+
 def load_pdf(file) -> str:
-    """Extract text from a PDF file."""
+    """Extract text from a digital PDF file."""
     reader = PdfReader(file)
     text = ""
     for page in reader.pages:

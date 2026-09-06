@@ -3,6 +3,7 @@ import tempfile
 
 import streamlit as st
 
+from pipeline.ingestion import load_pdf, chunk_text, is_scanned_pdf
 from pipeline.audio import transcribe_audio
 from pipeline.ingestion import load_pdf, chunk_text
 from pipeline.embeddings import build_index
@@ -12,7 +13,21 @@ from pipeline.generation import generate_answer
 
 @st.cache_resource
 def load_pipeline(file):
-    text = load_pdf(file)
+    import tempfile
+    import os
+    from pipeline.ocr import extract_text_from_scanned_pdf
+
+    if is_scanned_pdf(file):
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+            tmp.write(file.read())
+            tmp_path = tmp.name
+        text, ocr_latency = extract_text_from_scanned_pdf(tmp_path)
+        os.unlink(tmp_path)
+        st.info(
+            f"Scanned PDF detected — OCR latency: {ocr_latency:.4f} seconds")
+    else:
+        text = load_pdf(file)
+
     chunks = chunk_text(text)
     model, index = build_index(chunks)
     return chunks, model, index
