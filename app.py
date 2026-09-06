@@ -1,4 +1,9 @@
+import os
+import tempfile
+
 import streamlit as st
+
+from pipeline.audio import transcribe_audio
 from pipeline.ingestion import load_pdf, chunk_text
 from pipeline.embeddings import build_index
 from pipeline.retrieval import dense_search, bm25_search, reciprocal_rank_fusion
@@ -17,7 +22,15 @@ st.set_page_config(page_title="Recall", page_icon="📚")
 st.title("📚 Recall")
 st.write("A local RAG-powered study assistant")
 
-upload_file = st.file_uploader("Upload a PDF", type=["pdf"])
+upload_type = st.radio("Select input type", ["PDF", "Audio"])
+
+if upload_type == "PDF":
+    upload_file = st.file_uploader("Upload a PDF", type=["pdf"])
+    audio_file = None
+else:
+    audio_file = st.file_uploader(
+        "Upload an audio file", type=["mp3", "wav", "m4a"])
+    upload_file = None
 
 retrieval_mode = st.selectbox(
     "Select retrieval strategy",
@@ -85,3 +98,16 @@ if upload_file:
                 st.write(f"Score: {scores[rank]:.4f}")
                 st.write(chunk)
                 st.write("---")
+
+if audio_file:
+    st.success("Audio file uploaded successfully")
+    with st.spinner("Transcribing audio..."):
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp:
+            tmp.write(audio_file.read())
+            tmp_path = tmp.name
+        transcript, latency = transcribe_audio(tmp_path)
+        os.unlink(tmp_path)
+    st.success("Transcription complete")
+    st.info(f"Transcription latency: {latency:.4f} seconds")
+    st.write("### Transcript")
+    st.write(transcript)
