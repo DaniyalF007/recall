@@ -1,112 +1,102 @@
-Recall — A Transparent Local RAG Study Assistant
+# Recall — A Transparent Local RAG Study Assistant
 
 A fully local, privacy-preserving Retrieval-Augmented Generation (RAG) study assistant developed for the CM3070 Final Project under the CM3020 Artificial Intelligence (Orchestrating Models) template.
 
-The system allows users to upload their own study materials, ask questions in natural language, and receive answers grounded in retrieved passages from those documents. Source passages are displayed alongside generated answers to improve transparency and verification.
+The system allows users to upload study materials, ask questions in natural language, and receive answers grounded in retrieved passages from those documents. Source passages and similarity scores are displayed alongside generated answers to support transparency and verification.
 
-⸻
+---
 
-Research Question
+## Research Question
 
-How much does retrieval strategy influence answer quality in a local RAG study assistant operating on student learning materials?
+How does the choice of retrieval strategy influence retrieval effectiveness and answer quality within a transparent, fully local Retrieval-Augmented Generation system for document question answering?
 
-⸻
+---
 
-Project Aim
+## Project Aim
 
-The objective of Recall is not to develop a novel AI model, but to investigate how different retrieval strategies affect answer quality in a document-grounded question-answering system.
+The objective of Recall is to investigate how different retrieval strategies affect answer quality in a document-grounded question-answering system. The project implements and evaluates BM25, dense semantic retrieval, and hybrid retrieval under controlled conditions using the same document collections, chunking configuration, embedding model, and language model.
 
-The project implements and evaluates multiple retrieval approaches under controlled conditions using the same document collections, questions, chunking configuration, embedding model, and language model.
+---
 
-⸻
-
-Why Local and Transparent?
+## Why Local and Transparent?
 
 Existing AI study tools such as NotebookLM and ChatGPT provide varying levels of source transparency, but retrieval behaviour and ranking decisions remain largely hidden from users.
 
-Recall addresses this by running entirely on the user’s machine with no data leaving the device and by displaying the exact source passage alongside every answer. Users can verify responses directly against the original document.
+Recall addresses this by running entirely on the user's machine with no data leaving the device and by displaying the exact source passage alongside every answer. Users can verify responses directly against the original document.
 
-The orchestration of three pre-trained models — sentence-transformers for semantic understanding, Llama 3 for language generation, and Whisper for audio ingestion — enables a pipeline that handles text, audio, and document inputs without relying on external APIs or cloud services.
+---
 
-The evaluation focus exists because retrieval strategy is a major factor influencing answer quality in RAG systems. Prior work suggests hybrid approaches can outperform single-method retrieval, although gains may vary depending on the dataset. Measuring this behaviour on student learning materials under controlled conditions forms the project’s primary research contribution.
+## Architecture
 
-⸻
+Recall orchestrates five pre-trained models within a single unified pipeline:
 
-Current Features
+- **all-MiniLM-L6-v2** — semantic text embeddings
+- **Llama 3 via Ollama** — local language model generation
+- **Whisper (OpenAI)** — audio transcription
+- **TrOCR (Microsoft)** — scanned PDF OCR
+- **BM25 (rank-bm25)** — lexical retrieval
 
-- PDF document ingestion
-- Document chunking
-- Dense semantic retrieval using sentence-transformers and FAISS
-- Local answer generation using Llama 3 via Ollama
-- Streamlit user interface
-- Source-grounded answers with citation display
-- Grounding guardrail (refuses questions not supported by the document)
+---
 
-⸻
+## Development Status
 
-Planned Features
+### Complete
 
-- BM25 keyword retrieval
+- Digital PDF ingestion and chunking
+- Dense semantic retrieval (FAISS + all-MiniLM-L6-v2)
+- BM25 lexical retrieval
 - Hybrid retrieval using Reciprocal Rank Fusion (RRF)
+- Retrieval latency measurement per strategy
+- Whisper audio transcription
+- TrOCR scanned PDF support with automatic detection
+- Streamlit interface with retrieval mode selector
+- FastAPI backend with REST endpoints
+- React frontend
+- Grounded answer generation using Llama 3
+- Source citation display with similarity scores
+- Grounding guardrail (refuses out-of-scope questions)
+
+### Planned
+
 - Multiple document upload
-- Retrieval mode selection within the UI
-- Whisper-based audio transcription for lecture recordings
-- OCR support for scanned PDFs
-- Full comparative evaluation using Recall@k, Accuracy@k, RAGAS metrics, and latency measurements
+- Expanded benchmark (50-100 questions)
+- RAGAS automated evaluation (Faithfulness, Answer Relevance, Context Precision, Context Recall)
+- Full comparative analysis of retrieval strategies
 
-⸻
+---
 
-Retrieval Strategies
+## Retrieval Strategies
 
-The final system will compare three retrieval methods under identical conditions:
+Three retrieval methods are compared under identical experimental conditions:
 
-BM25 — Traditional keyword-based retrieval using lexical matching.
+**BM25** — Traditional keyword-based retrieval using term frequency and inverse document frequency.
 
-Dense Retrieval — Semantic retrieval using sentence embeddings generated by all-MiniLM-L6-v2 and indexed with FAISS.
+**Dense Retrieval** — Semantic retrieval using sentence embeddings generated by all-MiniLM-L6-v2 and indexed with FAISS.
 
-Hybrid Retrieval — Combination of sparse and dense retrieval using Reciprocal Rank Fusion (RRF).
+**Hybrid Retrieval** — Combination of BM25 and dense retrieval using Reciprocal Rank Fusion (RRF), prioritising passages ranked highly by both methods.
 
-⸻
+---
 
-Models
+## Technology Stack
 
-Current
+| Component              | Technology                               |
+| ---------------------- | ---------------------------------------- |
+| Backend API            | FastAPI + Uvicorn                        |
+| Frontend (primary)     | Streamlit                                |
+| Frontend (alternative) | React                                    |
+| PDF parsing            | PyPDF                                    |
+| Text chunking          | LangChain RecursiveCharacterTextSplitter |
+| Embeddings             | sentence-transformers (all-MiniLM-L6-v2) |
+| Vector index           | FAISS                                    |
+| Lexical retrieval      | rank-bm25                                |
+| Language model         | Llama 3 via Ollama                       |
+| Audio transcription    | OpenAI Whisper                           |
+| OCR                    | Microsoft TrOCR                          |
+| Evaluation             | RAGAS (planned)                          |
 
-- all-MiniLM-L6-v2 — text embeddings (sentence-transformers)
-- Llama 3 via Ollama — local answer generation
+---
 
-Planned
-
-- Whisper (OpenAI) — audio transcription for lecture recordings
-
-⸻
-
-Technology Stack
-
-Python · Streamlit · LangChain · FAISS · sentence-transformers · Ollama · rank-bm25 · RAGAS
-
-⸻
-
-Development Status
-
-- PDF ingestion
-- Dense retrieval pipeline
-- Streamlit UI
-- Grounded question answering
-- Source citation display
-- Grounding guardrail
-- BM25 retrieval
-- Hybrid retrieval (RRF)
-- Whisper integration
-- OCR support for scanned PDFs
-- Multiple document upload
-- Retrieval mode selector
-- Evaluation framework
-- Final benchmarking
-
-⸻
-
-Evaluation Plan
+## Evaluation Plan
 
 The final evaluation will compare all three retrieval strategies under identical conditions:
 
@@ -116,80 +106,100 @@ The final evaluation will compare all three retrieval strategies under identical
 - Same embedding model
 - Same language model and prompt configuration
 
-Metrics
+**Metrics:**
 
 - Recall@k
-- Accuracy@k
 - Retrieval Success Rate
 - Faithfulness (RAGAS)
 - Answer Relevance (RAGAS)
 - Context Precision (RAGAS)
-- Response latency per query
+- Context Recall (RAGAS)
+- Response latency per query per strategy
 
-⸻
+---
 
-How to Run
+## How to Run
 
-Requires Python 3.10 or higher and Ollama installed on your machine.
+Requires Python 3.11 and Ollama installed on your machine.
 
-1. Clone the repository
+**1. Clone the repository**
 
+```bash
 git clone https://github.com/DaniyalF007/recall.git
-
-2. Enter the project directory
-
 cd recall
+```
 
-3. Create a virtual environment
+**2. Create and activate virtual environment**
 
-python3 -m venv venv
-
-4. Activate the environment
-
-Mac/Linux:
-
+```bash
+python3.11 -m venv venv
 source venv/bin/activate
+```
 
-Windows:
+**3. Install dependencies**
 
-venv\Scripts\activate
-
-5. Install dependencies
-
+```bash
 pip install -r requirements.txt
+```
 
-6. Pull the local model (first time only)
+**4. Pull the local model**
 
+```bash
 ollama pull llama3
+```
 
-7. Start Ollama
+**5. Start Ollama**
 
+```bash
 ollama serve
+```
 
-If you see “address already in use”, Ollama is already running and this step can be skipped.
+**6. Launch Streamlit interface**
 
-8. Launch the application
-
+```bash
 streamlit run app.py
+```
 
-The application will open automatically in your browser at:
+Opens at http://localhost:8501
 
-http://localhost:8501
+**7. Launch FastAPI backend (optional)**
 
-⸻
+```bash
+uvicorn api:app --reload
+```
 
-Repository Purpose
+Opens at http://127.0.0.1:8000
 
-This repository documents the complete development process of the Recall project, including implementation milestones, experimental evaluation, and supporting materials used throughout the CM3070 Final Project.
+**8. Launch React frontend (optional)**
 
-⸻
+```bash
+cd ../recall-ui
+npm install
+npm start
+```
 
-Author
+Opens at http://localhost:3000
 
-Daniyal Farooqui
+---
 
-BSc Computer Science
+## Repository Structure
 
-University of London
-
-CM3070 Final Project
+recall/
+├── app.py # Streamlit UI
+├── api.py # FastAPI backend
+├── requirements.txt
+├── README.md
+├── pipeline/
+│ ├── ingestion.py # PDF parsing and chunking
+│ ├── embeddings.py # Sentence transformer and FAISS
+│ ├── retrieval.py # BM25, dense, hybrid RRF
+│ ├── generation.py # Llama 3 prompt and generation
+│ ├── audio.py # Whisper transcription
+│ └── ocr.py # TrOCR scanned PDF support
+├── tests/
+│ ├── test_chunk.py
+│ ├── test_embed.py
+│ ├── test_pdf.py
+│ └── test_search.py
+└── data/
+└── benchmark.json # Evaluation benchmark
