@@ -20,14 +20,14 @@ def dense_search(
     """Retrieve the top-k chunks using dense semantic retrieval."""
     start = time.perf_counter()
 
-    query_embedding = model.encode([query])
-    distances, positions = index.search(
-        np.asarray(query_embedding),
+    query_embedding = model.encode([query], normalize_embeddings=True)
+    similarities, positions = index.search(
+        np.asarray(query_embedding, dtype="float32"),
         k
     )
 
     results = [
-        (chunks[position], float(distances[0][rank]))
+        (chunks[position], float(similarities[0][rank]))
         for rank, position in enumerate(positions[0])
     ]
 

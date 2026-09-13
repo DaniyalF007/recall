@@ -1,0 +1,425 @@
+{
+  "documents": [
+    {
+      "id": "doc1",
+      "name": "FinalProjectTemplates.pdf",
+      "type": "structured_template",
+      "description": "CM3070 Final Project template document"
+    },
+    {
+      "id": "doc2", 
+      "name": "lewis2020rag.pdf",
+      "type": "academic_paper",
+      "description": "Lewis et al. 2020 RAG paper"
+    },
+    {
+      "id": "doc3",
+      "name": "preliminary_report.pdf",
+      "type": "project_report",
+      "description": "Recall preliminary report"
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q1",
+      "document": "doc1",
+      "type": "factual",
+      "question": "How many pre-trained models are required for the Orchestrating AI Models project?",
+      "ground_truth": "At least three pre-trained models are required.",
+      "expected_retrieval": "The project requires at least THREE pre-trained models working on different types of data."
+    },
+    {
+      "id": "Q2",
+      "document": "doc1",
+      "type": "factual",
+      "question": "What does a minimum pass project look like for the Orchestrating AI Models template?",
+      "ground_truth": "A minimum pass includes a working system with three pre-trained models working to achieve a clearly specified goal with evidence of model evaluation.",
+      "expected_retrieval": "A minimum pass would include a working system which includes three pre-trained models working to achieve a clearly specified goal."
+    },
+    {
+      "id": "Q3",
+      "document": "doc1",
+      "type": "factual",
+      "question": "What should the final product of the Orchestrating AI Models project consist of?",
+      "ground_truth": "A working piece of software that can be used to achieve a clearly defined goal using multiple pre-trained models.",
+      "expected_retrieval": "The final product should consist of a working piece of software that can be used to achieve a clearly defined goal."
+    },
+    {
+      "id": "Q4",
+      "document": "doc1",
+      "type": "factual",
+      "question": "What is the main idea behind the Orchestrating AI Models project template?",
+      "ground_truth": "Combining multiple pre-trained models into a workflow that achieves a particular goal.",
+      "expected_retrieval": "This project is based around the idea of combining multiple pre-trained models into a workflow that achieves a particular goal."
+    },
+    {
+      "id": "Q5",
+      "document": "doc1",
+      "type": "paraphrased",
+      "question": "What kind of system must students build for the AI orchestration template?",
+      "ground_truth": "Students must build a working system that integrates at least three pre-trained AI models operating on different types of data to achieve a clearly defined goal.",
+      "expected_retrieval": "You should ensure that you meet the requirement to have at least THREE pre-trained models working on different types of data."
+    },
+    {
+      "id": "Q6",
+      "document": "doc1",
+      "type": "paraphrased",
+      "question": "Is it sufficient to just download and run models for the project?",
+      "ground_truth": "No. Just downloading some models and running them is not enough.",
+      "expected_retrieval": "Just downloading some models and running them is not enough."
+    },
+    {
+      "id": "Q7",
+      "document": "doc1",
+      "type": "paraphrased",
+      "question": "What separates a good project from a minimum pass in the orchestrating models template?",
+      "ground_truth": "A good project includes a working system with three pre-trained models plus evidence of model evaluation using appropriate criteria and a more sophisticated approach.",
+      "expected_retrieval": "A 2:2-2:1 project would include a working system which includes three pre-trained models."
+    },
+    {
+      "id": "Q8",
+      "document": "doc1",
+      "type": "inferential",
+      "question": "Why is it important to evaluate the models you choose for the project?",
+      "ground_truth": "Because students need to determine which models are appropriate for their needs and demonstrate that their model selection was justified through evaluation.",
+      "expected_retrieval": "You should evaluate your process here and be able to come up with an overarching method for doing this."
+    },
+    {
+      "id": "Q9",
+      "document": "doc1",
+      "type": "inferential",
+      "question": "What types of data should the three models in an orchestrating AI project process?",
+      "ground_truth": "The three models should work on different types of data, such as text, audio, and images.",
+      "expected_retrieval": "THREE pre-trained models working on different types of data."
+    },
+    {
+      "id": "Q10",
+      "document": "doc1",
+      "type": "negative",
+      "question": "What is the maximum word count for the final project report?",
+      "ground_truth": "NEGATIVE - This information is not specified in this document.",
+      "expected_retrieval": "N/A"
+    },
+    {
+      "id": "Q11",
+      "document": "doc1",
+      "type": "negative",
+      "question": "Which programming language must be used for the final project?",
+      "ground_truth": "NEGATIVE - The document does not specify a required programming language.",
+      "expected_retrieval": "N/A"
+    },
+    {
+      "id": "Q12",
+      "document": "doc1",
+      "type": "negative",
+      "question": "What is the submission deadline for the CM3070 final project?",
+      "ground_truth": "NEGATIVE - The exact deadline is not specified in this document.",
+      "expected_retrieval": "N/A"
+    },
+    {
+      "id": "Q13",
+      "document": "doc1",
+      "type": "factual",
+      "question": "What example is given in the template of how models can be combined?",
+      "ground_truth": "The template gives the example from the artificial intelligence course of combining multiple pre-trained models.",
+      "expected_retrieval": "In the artificial intelligence course, you saw how it is possible to combine multi-"
+    },
+    {
+      "id": "Q14",
+      "document": "doc1",
+      "type": "factual",
+      "question": "What does an excellent project look like for the Orchestrating AI Models template?",
+      "ground_truth": "An excellent project includes a sophisticated working system with three or more pre-trained models, rigorous evaluation, and goes beyond the basic requirements of the template.",
+      "expected_retrieval": "An excellent project would include a working system which includes three pre-trained models."
+    },
+    {
+      "id": "Q15",
+      "document": "doc1",
+      "type": "paraphrased",
+      "question": "Does the project need to deliver a working system?",
+      "ground_truth": "Yes. The project must deliver a working system that achieves a clear goal.",
+      "expected_retrieval": "You should ensure that the project delivers a working system that achieves a clear goal."
+    },
+    {
+      "id": "Q16",
+      "document": "doc1",
+      "type": "negative",
+      "question": "What is the name of the student who created the best project last year?",
+      "ground_truth": "NEGATIVE - This information is not in the document.",
+      "expected_retrieval": "N/A"
+    },
+    {
+      "id": "Q17",
+      "document": "doc1",
+      "type": "inferential",
+      "question": "Why must the models in the project work on different types of data?",
+      "ground_truth": "Working on different types of data demonstrates genuine orchestration across modalities rather than simply chaining models of the same type.",
+      "expected_retrieval": "THREE pre-trained models working on different types of data."
+    },
+    {
+      "id": "Q18",
+      "document": "doc1",
+      "type": "paraphrased",
+      "question": "What is the core challenge students must solve in the AI orchestration project?",
+      "ground_truth": "Students must decide on a goal and combine multiple pre-trained AI models into a unified workflow that achieves that goal.",
+      "expected_retrieval": "It is up to you to decide what that goal is."
+    },
+    {
+      "id": "Q19",
+      "document": "doc1",
+      "type": "factual",
+      "question": "Where can students find pre-trained models for their project?",
+      "ground_truth": "Students can find pre-trained models on HuggingFace at huggingface.co/models.",
+      "expected_retrieval": "You can find many pre-trained models for many different tasks here: https://huggingface.co/models"
+    },
+    {
+      "id": "Q20",
+      "document": "doc1",
+      "type": "negative",
+      "question": "How much does the CM3070 module cost to enrol in?",
+      "ground_truth": "NEGATIVE - This information is not in the document.",
+      "expected_retrieval": "N/A"
+    },
+    {
+      "id": "Q21",
+      "document": "doc2",
+      "name": "lewis2020rag.pdf",
+      "type": "factual",
+      "question": "What problem does Retrieval-Augmented Generation aim to solve?",
+      "ground_truth": "RAG aims to solve the problem of language models having static parametric knowledge that can be outdated or incorrect, by grounding generation in retrieved external documents.",
+      "expected_retrieval": "RAG addresses the limitations of parametric knowledge in language models."
+    },
+    {
+      "id": "Q22",
+      "document": "doc2",
+      "type": "factual",
+      "question": "What are the two components combined in a RAG system?",
+      "ground_truth": "RAG combines a neural retrieval component and a sequence-to-sequence language model.",
+      "expected_retrieval": "RAG combines parametric and non-parametric memory for language generation."
+    },
+    {
+      "id": "Q23",
+      "document": "doc2",
+      "type": "factual",
+      "question": "What retrieval method does the original RAG paper use?",
+      "ground_truth": "The original RAG paper uses Dense Passage Retrieval (DPR) for retrieving relevant documents.",
+      "expected_retrieval": "DPR is used as the retrieval component in RAG."
+    },
+    {
+      "id": "Q24",
+      "document": "doc2",
+      "type": "paraphrased",
+      "question": "How does RAG reduce hallucination in language model outputs?",
+      "ground_truth": "RAG reduces hallucination by grounding the language model's generation in retrieved external documents, so answers are based on verifiable evidence rather than parametric memory alone.",
+      "expected_retrieval": "RAG grounds generation in retrieved documents to reduce unsupported outputs."
+    },
+    {
+      "id": "Q25",
+      "document": "doc2",
+      "type": "paraphrased",
+      "question": "What kind of tasks is RAG particularly suited for?",
+      "ground_truth": "RAG is particularly suited for knowledge-intensive NLP tasks where factual accuracy and access to external information are important.",
+      "expected_retrieval": "RAG for knowledge-intensive NLP tasks."
+    },
+    {
+      "id": "Q26",
+      "document": "doc2",
+      "type": "factual",
+      "question": "What dataset is used to index documents in the original RAG system?",
+      "ground_truth": "The original RAG system uses Wikipedia as the document index.",
+      "expected_retrieval": "Wikipedia is used as the non-parametric knowledge source."
+    },
+    {
+      "id": "Q27",
+      "document": "doc2",
+      "type": "paraphrased",
+      "question": "Why is non-parametric memory important in RAG systems?",
+      "ground_truth": "Non-parametric memory allows the system to access and update external knowledge without retraining the language model, making it more flexible and up to date.",
+      "expected_retrieval": "Non-parametric memory can be updated without retraining."
+    },
+    {
+      "id": "Q28",
+      "document": "doc2",
+      "type": "inferential",
+      "question": "What advantage does RAG have over a standalone language model for factual questions?",
+      "ground_truth": "RAG can retrieve up-to-date and specific factual information from external documents, whereas a standalone language model is limited to knowledge encoded during training which may be outdated or incomplete.",
+      "expected_retrieval": "RAG outperforms standalone LMs on knowledge-intensive tasks."
+    },
+    {
+      "id": "Q29",
+      "document": "doc2",
+      "type": "inferential",
+      "question": "How does the retrieval component influence the quality of generated answers in RAG?",
+      "ground_truth": "The quality of retrieved passages directly determines the quality of generated answers — if irrelevant passages are retrieved the language model cannot produce accurate responses.",
+      "expected_retrieval": "Retrieval quality directly impacts generation quality in RAG."
+    },
+    {
+      "id": "Q30",
+      "document": "doc2",
+      "type": "negative",
+      "question": "What is the name of the GPU cluster used to train the RAG model?",
+      "ground_truth": "NEGATIVE - This specific information is not in the document.",
+      "expected_retrieval": "N/A"
+    },
+    {
+      "id": "Q31",
+      "document": "doc2",
+      "type": "negative",
+      "question": "What is the exact training time required to train a RAG model from scratch?",
+      "ground_truth": "NEGATIVE - This information is not specified in the document.",
+      "expected_retrieval": "N/A"
+    },
+    {
+      "id": "Q32",
+      "document": "doc2",
+      "type": "factual",
+      "question": "What generator model does the original RAG paper use for answer generation?",
+      "ground_truth": "The original RAG paper uses BART as the sequence-to-sequence generator.",
+      "expected_retrieval": "BART is used as the generator in RAG."
+    },
+    {
+      "id": "Q33",
+      "document": "doc2",
+      "type": "paraphrased",
+      "question": "Can the document index in a RAG system be updated without retraining the model?",
+      "ground_truth": "Yes. The non-parametric document index can be updated independently of the language model parameters.",
+      "expected_retrieval": "The document index can be swapped or updated without retraining."
+    },
+    {
+      "id": "Q34",
+      "document": "doc2",
+      "type": "inferential",
+      "question": "Why is transparency important in RAG systems?",
+      "ground_truth": "Transparency is important because users can verify generated answers against retrieved source passages, making it easier to identify incorrect or unsupported responses.",
+      "expected_retrieval": "Retrieved passages allow users to verify generated answers."
+    },
+    {
+      "id": "Q35",
+      "document": "doc2",
+      "type": "negative",
+      "question": "What is the price of deploying a RAG system on AWS?",
+      "ground_truth": "NEGATIVE - This information is not in the document.",
+      "expected_retrieval": "N/A"
+    },
+    {
+      "id": "Q36",
+      "document": "doc3",
+      "type": "factual",
+      "question": "What is the research question of the Recall project?",
+      "ground_truth": "How does the choice of retrieval strategy influence retrieval effectiveness and answer quality within a transparent, fully local Retrieval-Augmented Generation system for document question answering?",
+      "expected_retrieval": "The research question asks how retrieval strategy influences retrieval effectiveness and answer quality."
+    },
+    {
+      "id": "Q37",
+      "document": "doc3",
+      "type": "factual",
+      "question": "Which embedding model does Recall use for dense retrieval?",
+      "ground_truth": "Recall uses all-MiniLM-L6-v2 for generating sentence embeddings.",
+      "expected_retrieval": "all-MiniLM-L6-v2 is used for sentence embeddings."
+    },
+    {
+      "id": "Q38",
+      "document": "doc3",
+      "type": "factual",
+      "question": "What chunk size and overlap does Recall use for text splitting?",
+      "ground_truth": "Recall uses a chunk size of 500 characters with a 50-character overlap.",
+      "expected_retrieval": "chunk_size=500, chunk_overlap=50"
+    },
+    {
+      "id": "Q39",
+      "document": "doc3",
+      "type": "factual",
+      "question": "What language model does Recall use for answer generation?",
+      "ground_truth": "Recall uses Llama 3 via Ollama for local answer generation.",
+      "expected_retrieval": "Llama 3 via Ollama is used for local language model generation."
+    },
+    {
+      "id": "Q40",
+      "document": "doc3",
+      "type": "factual",
+      "question": "What vector database does Recall use for dense retrieval?",
+      "ground_truth": "Recall uses FAISS for dense vector indexing and similarity search.",
+      "expected_retrieval": "FAISS is used for dense vector indexing and retrieval."
+    },
+    {
+      "id": "Q41",
+      "document": "doc3",
+      "type": "paraphrased",
+      "question": "Why does Recall run entirely on the user's local machine?",
+      "ground_truth": "To ensure data privacy, so that uploaded documents never leave the user's device and no external cloud services are required.",
+      "expected_retrieval": "Local execution ensures documents remain on the user's device."
+    },
+    {
+      "id": "Q42",
+      "document": "doc3",
+      "type": "paraphrased",
+      "question": "How does Recall show users which passages supported the generated answer?",
+      "ground_truth": "Recall displays the retrieved document passages alongside their similarity scores in an expandable sources section below the generated answer.",
+      "expected_retrieval": "Retrieved passages and distance scores are shown alongside the answer."
+    },
+    {
+      "id": "Q43",
+      "document": "doc3",
+      "type": "factual",
+      "question": "What retrieval strategies does Recall compare?",
+      "ground_truth": "Recall compares BM25 lexical retrieval, dense semantic retrieval using FAISS, and hybrid retrieval using Reciprocal Rank Fusion.",
+      "expected_retrieval": "BM25, dense retrieval, and hybrid RRF are compared."
+    },
+    {
+      "id": "Q44",
+      "document": "doc3",
+      "type": "factual",
+      "question": "What was the overall answer accuracy of the preliminary prototype benchmark?",
+      "ground_truth": "The preliminary prototype achieved 80% overall answer accuracy (8 out of 10 questions answered correctly).",
+      "expected_retrieval": "80% answer accuracy on the preliminary benchmark."
+    },
+    {
+      "id": "Q45",
+      "document": "doc3",
+      "type": "factual",
+      "question": "What finding did Recall discover about repeated headings in documents?",
+      "ground_truth": "Dense retrieval matched on structural phrase similarity from repeated headings rather than topical content, retrieving passages from unrelated sections — called retrieval contamination.",
+      "expected_retrieval": "Retrieval contamination from repeated headings was identified as a finding."
+    },
+    {
+      "id": "Q46",
+      "document": "doc3",
+      "type": "paraphrased",
+      "question": "What problem did the word exactly cause in the grounding prompt?",
+      "ground_truth": "Instructing the model to reply exactly with a specific refusal phrase caused it to append the refusal after providing a correct answer, producing contradictory output.",
+      "expected_retrieval": "Prompt sensitivity finding — the word exactly caused contradictory output."
+    },
+    {
+      "id": "Q47",
+      "document": "doc3",
+      "type": "inferential",
+      "question": "Why does Recall keep all other variables constant when comparing retrieval strategies?",
+      "ground_truth": "To ensure that any observed differences in retrieval effectiveness and answer quality can be attributed solely to the retrieval strategy rather than other confounding variables.",
+      "expected_retrieval": "Controlled comparison with retrieval strategy as the only independent variable."
+    },
+    {
+      "id": "Q48",
+      "document": "doc3",
+      "type": "inferential",
+      "question": "What does the semantic-lexical mismatch finding suggest about dense retrieval?",
+      "ground_truth": "Dense retrieval optimises for semantic similarity rather than lexical precision, which can cause general topically-related passages to outscore passages containing specific factual answers.",
+      "expected_retrieval": "Semantic-lexical mismatch finding in the preliminary evaluation."
+    },
+    {
+      "id": "Q49",
+      "document": "doc3",
+      "type": "negative",
+      "question": "What is the GitHub username of the Recall project supervisor?",
+      "ground_truth": "NEGATIVE - This information is not in the document.",
+      "expected_retrieval": "N/A"
+    },
+    {
+      "id": "Q50",
+      "document": "doc3",
+      "type": "negative",
+      "question": "What is the exact cost of running Llama 3 via Ollama per query?",
+      "ground_truth": "NEGATIVE - This information is not specified in the document.",
+      "expected_retrieval": "N/A"
+    }
+  ]
+}

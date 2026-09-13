@@ -146,12 +146,14 @@ def query_document(request: QueryRequest):
             index,
             chunks,
             question,
+            k=20,
         )
 
         bm25_results, bm25_latency = bm25_search(
             bm25,
             chunks,
             question,
+            k=20,
         )
 
         results, rrf_latency = reciprocal_rank_fusion(
@@ -176,8 +178,8 @@ def query_document(request: QueryRequest):
     )
 
     answer = generate_answer(
-        question,
-        context,
+        context=context,
+        question=question,
     )
 
     sources = [

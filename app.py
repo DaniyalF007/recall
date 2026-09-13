@@ -178,13 +178,15 @@ if upload_file:
                     model,
                     index,
                     chunks,
-                    question_input
+                    question_input,
+                    k=20
                 )
 
                 bm25_results, bm25_latency = bm25_search(
                     bm25,
                     chunks,
-                    question_input
+                    question_input,
+                    k=20
                 )
 
                 results, rrf_latency = reciprocal_rank_fusion(
