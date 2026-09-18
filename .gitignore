@@ -4,3 +4,4 @@ __pycache__/
 *.pdf
 data/
 node_modules/
+frontend/node_modules/
