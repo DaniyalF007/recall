@@ -21,6 +21,8 @@ from pipeline.retrieval import (
 
 from pipeline.generation import generate_answer
 
+from pipeline.audio import transcribe_audio
+
 
 app = FastAPI()
 
@@ -96,6 +98,52 @@ async def upload_document(file: UploadFile = File(...)):
             "chunks": len(chunks),
             "scanned": scanned,
             "ocr_latency": ocr_latency,
+        }
+
+    finally:
+        import os
+
+        if os.path.exists(temp_path):
+            os.remove(temp_path)
+
+
+@app.post("/upload_audio")
+async def upload_audio(file: UploadFile = File(...)):
+    if not file.filename.lower().endswith((".mp3", ".wav", ".m4a")):
+        raise HTTPException(
+            status_code=400,
+            detail="Only .mp3, .wav, or .m4a audio files are supported."
+        )
+
+    contents = await file.read()
+
+    temp_path = f"temp_{file.filename}"
+
+    with open(temp_path, "wb") as f:
+        f.write(contents)
+
+    try:
+        text, audio_latency = transcribe_audio(temp_path)
+
+        chunks = chunk_text(text)
+
+        model, index = build_index(chunks)
+
+        bm25 = build_bm25_index(chunks)
+
+        pipeline_store["chunks"] = chunks
+        pipeline_store["model"] = model
+        pipeline_store["index"] = index
+        pipeline_store["bm25"] = bm25
+
+        pipeline_store["filename"] = file.filename
+
+        return {
+            "message": "Audio transcribed and indexed successfully.",
+            "filename": file.filename,
+            "chunks": len(chunks),
+            "transcript": text,
+            "audio_latency": audio_latency,
         }
 
     finally:

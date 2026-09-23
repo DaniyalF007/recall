@@ -3,12 +3,14 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
+  const [mode, setMode] = useState("PDF");
   const [file, setFile] = useState(null);
   const [question, setQuestion] = useState("");
   const [retrievalMode, setRetrievalMode] = useState("Dense");
   const [answer, setAnswer] = useState("");
   const [sources, setSources] = useState([]);
   const [latency, setLatency] = useState(null);
+  const [transcript, setTranscript] = useState("");
   const [uploaded, setUploaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -16,11 +18,17 @@ function App() {
   const handleUpload = async () => {
     if (!file) return;
     setUploading(true);
+    setTranscript("");
     const formData = new FormData();
     formData.append("file", file);
+    const endpoint = mode === "Audio" ? "upload_audio" : "upload";
     try {
-      await axios.post("http://127.0.0.1:8000/upload", formData);
+      const res = await axios.post(
+        `http://127.0.0.1:8000/${endpoint}`,
+        formData
+      );
       setUploaded(true);
+      if (res.data.transcript) setTranscript(res.data.transcript);
     } catch (err) {
       alert("Upload failed — make sure the API is running");
     }
@@ -44,6 +52,15 @@ function App() {
     setLoading(false);
   };
 
+  const switchMode = (m) => {
+    setMode(m);
+    setFile(null);
+    setUploaded(false);
+    setTranscript("");
+    setAnswer("");
+    setSources([]);
+  };
+
   return (
     <div className="app">
       <div className="header">
@@ -52,17 +69,46 @@ function App() {
       </div>
 
       <div className="card">
-        <h2>Upload Document</h2>
+        <h2>Upload {mode === "Audio" ? "Audio" : "Document"}</h2>
+
+        <div className="toggle">
+          <button
+            className={mode === "PDF" ? "toggle-btn active" : "toggle-btn"}
+            onClick={() => switchMode("PDF")}
+          >
+            PDF
+          </button>
+          <button
+            className={mode === "Audio" ? "toggle-btn active" : "toggle-btn"}
+            onClick={() => switchMode("Audio")}
+          >
+            Audio
+          </button>
+        </div>
+
         <input
           type="file"
-          accept=".pdf"
+          accept={mode === "Audio" ? ".mp3,.wav,.m4a" : ".pdf"}
           onChange={(e) => setFile(e.target.files[0])}
         />
         <button onClick={handleUpload} disabled={!file || uploading}>
-          {uploading ? "Processing..." : "Upload PDF"}
+          {uploading
+            ? mode === "Audio"
+              ? "Transcribing..."
+              : "Processing..."
+            : mode === "Audio"
+            ? "Upload Audio"
+            : "Upload PDF"}
         </button>
         {uploaded && (
-          <p className="success">✓ Document ready for querying</p>
+          <p className="success">✓ {mode === "Audio" ? "Audio transcribed and ready" : "Document ready for querying"}</p>
+        )}
+
+        {transcript && (
+          <div className="transcript">
+            <p className="transcript-label">Transcript</p>
+            <p className="transcript-text">{transcript}</p>
+          </div>
         )}
       </div>
 
