@@ -14,13 +14,20 @@ Recall investigates how different retrieval strategies affect answer quality in 
 
 ## Architecture
 
-Recall orchestrates five pre-trained models within a single unified pipeline:
+Recall orchestrates multiple AI models and retrieval components within a single unified pipeline.
+
+Pre-trained models:
 
 - all-MiniLM-L6-v2 — semantic text embeddings
 - Llama 3 via Ollama — local language model generation
 - Whisper (OpenAI) — audio transcription
 - TrOCR (Microsoft) — scanned PDF OCR
+
+Retrieval methods:
+
 - BM25 (rank-bm25) — lexical retrieval
+- Dense — semantic vector retrieval (FAISS)
+- Hybrid — Reciprocal Rank Fusion (RRF) of BM25 and dense
 
 ## Features
 
@@ -74,36 +81,36 @@ Requires Python 3.11 and Ollama installed. Audio transcription also requires ffm
 
 1. Clone
 
-    git clone https://github.com/DaniyalF007/recall.git
-    cd recall
+   git clone https://github.com/DaniyalF007/recall.git
+   cd recall
 
 2. Virtual environment
 
-    python3.11 -m venv venv
-    source venv/bin/activate
+   python3.11 -m venv venv
+   source venv/bin/activate
 
 3. Install dependencies
 
-    pip install -r requirements.txt
+   pip install -r requirements.txt
 
 4. Pull and start the local model
 
-    ollama pull llama3
-    ollama serve
+   ollama pull llama3
+   ollama serve
 
 5. Streamlit interface
 
-    streamlit run app.py
+   streamlit run app.py
 
 6. FastAPI backend
 
-    uvicorn api:app --reload
+   uvicorn api:app --reload
 
 7. React frontend
 
-    cd frontend
-    npm install
-    npm start
+   cd frontend
+   npm install
+   npm start
 
 ## Repository Structure
 
